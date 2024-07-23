@@ -10,7 +10,7 @@ dependencyResolutionManagement {
     repositories {
         ...
         ...
-        //add maven
+        //add jitpack
         maven { url 'https://jitpack.io' }
     }
 }
@@ -19,7 +19,7 @@ dependencyResolutionManagement {
 ```groovy
 dependencies 
 {
- implementation 'com.github.CodeWithTamim:NasaDownloader:1.0'
+ implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.0'
 }
 ```
 ### Step 1: Add These Permissions In the `AndroidManifest.xml` otherwise you may get some errors :(
