@@ -67,7 +67,7 @@ dependencies
 ```kotlin
  if (!downloader.isPermissionGranted(this))
  {
-  downloader.requestPermission(this);
+  downloader.requestPermission(this)
  } 
  else 
  {
@@ -123,8 +123,8 @@ downloader.setFailureMsg("Your failure Message");
   ```
 ### Kotlin
 ```kotlin
-downloader.setSuccessMsg("Your Success Message");
-downloader.setFailureMsg("Your failure Message");
+downloader.setSuccessMsg("Your Success Message")
+downloader.setFailureMsg("Your failure Message")
   ```
 
   ## Final code sample
