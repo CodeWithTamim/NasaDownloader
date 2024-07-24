@@ -93,6 +93,19 @@ downloader.downloadImage(this,bitmapImage, NasaDownloader.IMAGE_TYPE.JPEG);
 ```kotlin
 downloader.downloadImage(this,bitmapImage, NasaDownloader.IMAGE_TYPE.JPEG)
 ```
+### You can get the bitmap from any image view like this
+#### Example :
+```java
+Drawable drawable = yourImageView.getDrawable();
+BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+Bitmap myBitmap = bitmapDrawable.getBitmap();
+```
+
+```kotlin
+val drawable = yourImageView.drawable
+val bitmapDrawable = drawable as? BitmapDrawable
+val myBitmap = bitmapDrawable?.bitmap
+```
 
 #### Available image saving types are these following
 ```java
