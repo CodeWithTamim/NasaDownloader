@@ -10,6 +10,18 @@ dependencyResolutionManagement {
     repositories {
         ...
         ...
+        // add jitpack
+        maven(url = "https://jitpack.io")
+    }
+}
+```
+#### `settings.gradle.kts`
+```groovy
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        ...
         //add jitpack
         maven { url 'https://jitpack.io' }
     }
@@ -21,6 +33,10 @@ dependencies
 {
   implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.0'
 }
+```
+#### `build.gradle.kts` app level module
+``groovy
+implementation("com.github.CodeWithTamim:NasaDownloader:1.0.0")
 ```
 ### Step 1: Add These Permissions In the `AndroidManifest.xml` otherwise you may get some errors :(
 
