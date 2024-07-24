@@ -35,7 +35,7 @@ dependencies
 }
 ```
 #### `build.gradle.kts` app level module
-``groovy
+```groovy
 dependencies 
 {
 implementation("com.github.CodeWithTamim:NasaDownloader:1.0.0")
