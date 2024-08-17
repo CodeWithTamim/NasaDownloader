@@ -6,7 +6,7 @@
     <groupId>com.nasahacker</groupId>
     <artifactId>nasadownloader</artifactId>
     <version>1.0.0</version>
-    <packaging>aar</packaging>
+    <packaging>jar</packaging> <!-- Changed from aar to jar -->
 
     <name>NasaDownloader Library</name>
     <description>An Android library for downloading files</description>
