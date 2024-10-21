@@ -38,14 +38,14 @@ dependencyResolutionManagement {
 #### Groovy (build.gradle):
 ```groovy
 dependencies {
-    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.0'
+    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.4'
 }
 ```
 
 #### Kotlin DSL (build.gradle.kts):
 ```kotlin
 dependencies {
-    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.0")
+    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.4")
 }
 ```
 
@@ -68,16 +68,16 @@ For minimum SDK versions above 21, include this:
 
 ### Step 3: Initialize the Nasa Downloader
 
-Create an instance of `NasaDownloader` by passing the directory name where images will be saved:
+Create an instance of `NasaDownloader` by passing the directory name where images will be saved and the quality setting (0 to 100):
 
 #### Java Example:
 ```java
-NasaDownloader downloader = new NasaDownloader("YourDirectory");
+NasaDownloader downloader = new NasaDownloader("YourDirectory", 80);  // 80 is the quality setting
 ```
 
 #### Kotlin Example:
 ```kotlin
-val downloader = NasaDownloader("YourDirectory")
+val downloader = NasaDownloader("YourDirectory", 80)  // 80 is the quality setting
 ```
 
 ### Step 4: Permission Handling
@@ -104,7 +104,7 @@ if (!downloader.isPermissionGranted(this)) {
 
 ### Step 5: Image Downloading
 
-Download an image either by **URL** or **Bitmap**.
+Download an image either by **URL** or **Bitmap**. The supported formats are **JPEG**, **PNG**, and **WEBP**.
 
 #### Downloading an Image via URL:
 
@@ -167,7 +167,7 @@ downloader.setFailureMsg("Download failed!")
 
 #### Java:
 ```java
-NasaDownloader downloader = new NasaDownloader("YourDirectory");
+NasaDownloader downloader = new NasaDownloader("YourDirectory", 80);
 downloader.setSuccessMsg("Image downloaded!");
 downloader.setFailureMsg("Download failed!");
 if (!downloader.isPermissionGranted(this)) {
@@ -179,7 +179,7 @@ if (!downloader.isPermissionGranted(this)) {
 
 #### Kotlin:
 ```kotlin
-val downloader = NasaDownloader("YourDirectory")
+val downloader = NasaDownloader("YourDirectory", 80)
 downloader.setSuccessMsg("Image downloaded!")
 downloader.setFailureMsg("Download failed!")
 if (!downloader.isPermissionGranted(this)) {
