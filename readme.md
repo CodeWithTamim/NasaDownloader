@@ -39,14 +39,14 @@ dependencyResolutionManagement {
 #### Groovy (build.gradle):
 ```groovy
 dependencies {
-    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.4'
+    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.5'
 }
 ```
 
 #### Kotlin DSL (build.gradle.kts):
 ```kotlin
 dependencies {
-    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.4")
+    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.5")
 }
 ```
 
