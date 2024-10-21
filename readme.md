@@ -87,10 +87,10 @@ Before saving or downloading an image, ensure the required permissions are grant
 #### Java Example:
 ```java
 if (!downloader.isPermissionGranted(this)) {
-    downloader.requestPermission(this);
+        downloader.requestPermission(this);
 } else {
-    // Ready to download or save images
-}
+        // Ready to download or save images
+        }
 ```
 
 #### Kotlin Example:
@@ -171,9 +171,9 @@ NasaDownloader downloader = new NasaDownloader("YourDirectory");
 downloader.setSuccessMsg("Image downloaded!");
 downloader.setFailureMsg("Download failed!");
 if (!downloader.isPermissionGranted(this)) {
-    downloader.requestPermission(this);
+        downloader.requestPermission(this);
 } else {
-    downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG);
+        downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG);
 }
 ```
 
