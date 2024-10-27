@@ -1,6 +1,7 @@
 
 # 🚀 Nasa Downloader Library
-[![](https://jitpack.io/v/CodeWithTamim/NasaDownloader.svg)](https://jitpack.io/#CodeWithTamim/NasaDownloader)
+
+[![Latest Version](https://jitpack.io/v/CodeWithTamim/NasaDownloader.svg)](https://jitpack.io/#CodeWithTamim/NasaDownloader)
 ![GitHub Stars](https://img.shields.io/github/stars/CodeWithTamim/NasaDownloader)
 ![License](https://img.shields.io/github/license/CodeWithTamim/NasaDownloader)
 ![Android API](https://img.shields.io/badge/Android-API%2021--34-brightgreen)
@@ -9,9 +10,13 @@
 
 **Nasa Downloader** is a lightweight and efficient library designed to simplify downloading and saving images from URLs or Bitmaps, especially for Android 13 and later. It supports **API 21 to API 34** and provides a smooth solution for image saving tasks in your Android projects.
 
+---
+
 ## ✨ Why Choose This Library?
 
 Many developers face issues when saving or downloading images on Android 13 and above. **Nasa Downloader** offers an intuitive API to handle these tasks effortlessly, ensuring compatibility and ease of use across Android versions.
+
+---
 
 ## 📚 Integration Guide
 
@@ -19,7 +24,7 @@ Many developers face issues when saving or downloading images on Android 13 and 
 
 To integrate **Nasa Downloader** into your project, add the JitPack repository.
 
-#### Groovy (settings.gradle):
+#### Groovy (settings.gradle)
 ```groovy
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -29,7 +34,7 @@ dependencyResolutionManagement {
 }
 ```
 
-#### Kotlin DSL (settings.gradle.kts):
+#### Kotlin DSL (settings.gradle.kts)
 ```kotlin
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -41,14 +46,14 @@ dependencyResolutionManagement {
 
 ### Step 1: Add the Dependency
 
-#### Groovy (build.gradle):
+#### Groovy (build.gradle)
 ```groovy
 dependencies {
     implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.5'
 }
 ```
 
-#### Kotlin DSL (build.gradle.kts):
+#### Kotlin DSL (build.gradle.kts)
 ```kotlin
 dependencies {
     implementation("com.github.CodeWithTamim:NasaDownloader:1.0.5")
@@ -57,7 +62,7 @@ dependencies {
 
 ### Step 2: Add Required Permissions
 
-Ensure the following permissions are added to your `AndroidManifest.xml` to enable downloading and saving:
+Ensure the following permissions are added to your `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET"/>
@@ -74,29 +79,29 @@ For minimum SDK versions above 21, include this:
 
 ### Step 3: Initialize the Nasa Downloader
 
-Create an instance of `NasaDownloader` by passing the directory name where images will be saved and the quality setting (0 to 100):
+Create an instance of `NasaDownloader` by passing the directory name and quality setting (0 to 100):
 
 #### Java Example:
 ```java
-NasaDownloader downloader = new NasaDownloader("YourDirectory", 80);  // 80 is the quality setting
+NasaDownloader downloader = new NasaDownloader("YourDirectory", 80);
 ```
 
 #### Kotlin Example:
 ```kotlin
-val downloader = NasaDownloader("YourDirectory", 80)  // 80 is the quality setting
+val downloader = NasaDownloader("YourDirectory", 80)
 ```
 
 ### Step 4: Permission Handling
 
-Before saving or downloading an image, ensure the required permissions are granted:
+Before saving or downloading an image, ensure required permissions are granted:
 
 #### Java Example:
 ```java
 if (!downloader.isPermissionGranted(this)) {
-        downloader.requestPermission(this);
+    downloader.requestPermission(this);
 } else {
-        // Ready to download or save images
-        }
+    // Ready to download or save images
+}
 ```
 
 #### Kotlin Example:
@@ -110,50 +115,48 @@ if (!downloader.isPermissionGranted(this)) {
 
 ### Step 5: Image Downloading
 
-Download an image either by **URL** or **Bitmap**. The supported formats are **JPEG**, **PNG**, and **WEBP**.
+Download an image either by **URL** or **Bitmap**. Supported formats: **JPEG**, **PNG**, and **WEBP**.
 
-#### Downloading an Image via URL:
+#### Download via URL
 
-##### Java:
+**Java**:
 ```java
 downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG);
 ```
 
-##### Kotlin:
+**Kotlin**:
 ```kotlin
 downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG)
 ```
 
-#### Downloading an Image via Bitmap:
+#### Download via Bitmap
 
-##### Java:
+**Java**:
 ```java
 downloader.downloadImage(this, bitmap, NasaDownloader.IMAGE_TYPE.JPEG);
 ```
 
-##### Kotlin:
+**Kotlin**:
 ```kotlin
 downloader.downloadImage(this, bitmap, NasaDownloader.IMAGE_TYPE.JPEG)
 ```
 
 ### Extracting Bitmap from ImageView
 
-You can extract a Bitmap from an ImageView using the following code:
-
-##### Java:
+**Java**:
 ```java
 Drawable drawable = imageView.getDrawable();
 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 ```
 
-##### Kotlin:
+**Kotlin**:
 ```kotlin
 val bitmap = (imageView.drawable as? BitmapDrawable)?.bitmap
 ```
 
-### Step 6: Customize Success & Failure Messages
+### Step 6: Customize Messages
 
-Customize the toast messages displayed upon success or failure:
+Customize toast messages displayed upon success or failure:
 
 #### Java Example:
 ```java
@@ -177,9 +180,9 @@ NasaDownloader downloader = new NasaDownloader("YourDirectory", 80);
 downloader.setSuccessMsg("Image downloaded!");
 downloader.setFailureMsg("Download failed!");
 if (!downloader.isPermissionGranted(this)) {
-        downloader.requestPermission(this);
+    downloader.requestPermission(this);
 } else {
-        downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG);
+    downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG);
 }
 ```
 
@@ -199,7 +202,9 @@ if (!downloader.isPermissionGranted(this)) {
 
 ## Contributing
 
-If **Nasa Downloader** has been useful to you, please give it a ⭐ and consider sharing it with your peers. Contributions are always welcome! Fork the repository, make your changes, and submit a pull request.
+If **Nasa Downloader** has been useful to you, please give it a ⭐ and share it with your peers. Contributions are always welcome! Fork the repository, make your changes, and submit a pull request.
+
+---
 
 ## License
 
