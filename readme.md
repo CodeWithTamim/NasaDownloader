@@ -1,70 +1,180 @@
-
-
-
-# 🚀 Nasa Downloader Library
-
+# Nasa Downloader
 [![Latest Version](https://jitpack.io/v/CodeWithTamim/NasaDownloader.svg)](https://jitpack.io/#CodeWithTamim/NasaDownloader)
 ![GitHub Stars](https://img.shields.io/github/stars/CodeWithTamim/NasaDownloader)
-![License](https://img.shields.io/github/license/CodeWithTamim/NasaDownloader)
-![Android API](https://img.shields.io/badge/Android-API%2021--34-brightgreen)
-![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen)
-![Platform](https://img.shields.io/badge/Platform-Android-blue)
 
-**Nasa Downloader** is a lightweight and efficient library designed to simplify downloading and saving images from URLs or Bitmaps, especially for Android 13 and later. It supports **API 21 to API 34** and provides a smooth solution for image saving tasks in your Android projects.
+Nasa Downloader is a library designed to download images from URLs or bitmaps and save them on an Android device. It supports saving images in various formats and manages permissions for accessing external storage.
 
----
+## Features
 
-## ✨ Why Choose This Library?
+- Download images from URLs
+- Save images from bitmaps
+- Supports multiple image formats (JPEG, PNG, etc.)
+- Manages permissions for external storage access
 
-Many developers face issues when saving or downloading images on Android 13 and above. **Nasa Downloader** offers an intuitive API to handle these tasks effortlessly, ensuring compatibility and ease of use across Android versions.
+## Installation
 
----
+To use this library, add the following dependency to your `build.gradle` or `build.gradle.kts` file. The library is hosted on JitPack.
 
-## 📚 Integration Guide
+### Groovy
 
-### Step 0: Add the JitPack Repository
-
-To integrate **Nasa Downloader** into your project, add the JitPack repository.
-
-#### Groovy (settings.gradle)
 ```groovy
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+allprojects {
     repositories {
+        ...
         maven { url 'https://jitpack.io' }
     }
 }
+
+dependencies {
+    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.0'
+}
 ```
 
-#### Kotlin DSL (settings.gradle.kts)
+### Kotlin
+
 ```kotlin
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+allprojects {
     repositories {
-        maven(url = "https://jitpack.io")
+        ...
+        maven { url = uri("https://jitpack.io") }
     }
 }
-```
 
-### Step 1: Add the Dependency
-
-#### Groovy (build.gradle)
-```groovy
 dependencies {
-    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.5'
+    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.0")
 }
 ```
 
-#### Kotlin DSL (build.gradle.kts)
+## Usage
+
+### Initialization
+
+To get the singleton instance of `NasaDownloader`, use the following code:
+
 ```kotlin
-dependencies {
-    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.5")
+val nasaDownloader = NasaDownloader.getInstance(
+    saveDirName = "MyImages", // Optional, default is "NasaDownloader"
+    imageQuality = 80 // Optional, default is 100
+)
+```
+
+### Download Image from URL
+
+To download an image from a URL and save it:
+## Java
+```java
+
+ ExecutorService executorService = Executors.newSingleThreadExecutor(); // Create a single-threaded executor
+
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    nasaDownloader.downloadImageFromUrl(
+                        "https://example.com/image.jpg",
+                        ImageFormat.JPEG,
+                        new DownloadCallback() {
+                            @Override
+                            public void onSuccess(File file) {
+                                // Handle success
+                            }
+
+                            @Override
+                            public void onFailure(Exception exception) {
+                                // Handle failure
+                            }
+                        }
+                    );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        executorService.shutdown(); // Shut down the executor after task submission
+    }
+
+```
+
+## Kotlin
+
+```kotlin
+lifecycleScope.launch(Dispatchers.IO) {
+nasaDownloader.downloadImageFromUrl(
+    url = "https://example.com/image.jpg",
+    format = ImageFormat.JPEG,
+    onSuccess = { file ->
+        // Handle success
+    },
+    onFailure = { exception ->
+        // Handle failure
+    }
+)
 }
 ```
 
-### Step 2: Add Required Permissions
+### Save Bitmap
 
-Ensure the following permissions are added to your `AndroidManifest.xml`:
+To save a bitmap image:
+## Java
+
+
+```java
+
+ ExecutorService executorService = Executors.newSingleThreadExecutor(); // Create a single-threaded executor
+
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    nasaDownloader.saveBitmap(
+                        myBitmap,
+                        ImageFormat.PNG,
+                        new DownloadCallback() {
+                            @Override
+                            public void onSuccess(File file) {
+                                // Handle success
+                            }
+
+                            @Override
+                            public void onFailure(Exception exception) {
+                                // Handle failure
+                            }
+                        }
+                    );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        executorService.shutdown(); // Shut down the executor after task submission
+    }
+
+```
+
+
+## Kotlin
+
+```kotlin
+lifecycleScope.launch(Dispatchers.IO) {
+nasaDownloader.saveBitmap(
+    bitmap = myBitmap,
+    format = ImageFormat.PNG,
+    onSuccess = { file ->
+        // Handle success
+    },
+    onFailure = { exception ->
+        // Handle failure
+    }
+)
+}
+```
+
+### Permissions
+
+
+Add the following permissions to your `AndroidManifest.xml` file:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET"/>
@@ -73,145 +183,27 @@ Ensure the following permissions are added to your `AndroidManifest.xml`:
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
 
-For minimum SDK versions above 21, include this:
+Check if the necessary permissions are granted:
 
-```xml
-<uses-sdk android:minSdkVersion="your_min_sdk" tools:overrideLibrary="com.nasahacker.downloader"/>
-```
-
-### Step 3: Initialize the Nasa Downloader
-
-Create an instance of `NasaDownloader` by passing the directory name and quality setting (0 to 100):
-
-#### Java Example:
-```java
-NasaDownloader downloader = new NasaDownloader("YourDirectory", 80);
-```
-
-#### Kotlin Example:
 ```kotlin
-val downloader = NasaDownloader("YourDirectory", 80)
-```
-
-### Step 4: Permission Handling
-
-Before saving or downloading an image, ensure required permissions are granted:
-
-#### Java Example:
-```java
-if (!downloader.isPermissionGranted(this)) {
-    downloader.requestPermission(this);
-} else {
-    // Ready to download or save images
+if (!nasaDownloader.isPermissionsGranted(activity)) {
+    nasaDownloader.requestPermissions(activity)
 }
 ```
 
-#### Kotlin Example:
-```kotlin
-if (!downloader.isPermissionGranted(this)) {
-    downloader.requestPermission(this)
-} else {
-    // Ready to download or save images
-}
-```
-
-### Step 5: Image Downloading
-
-Download an image either by **URL** or **Bitmap**. Supported formats: **JPEG**, **PNG**, and **WEBP**.
-
-#### Download via URL
-
-**Java**:
-```java
-downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG);
-```
-
-**Kotlin**:
-```kotlin
-downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG)
-```
-
-#### Download via Bitmap
-
-**Java**:
-```java
-downloader.downloadImage(this, bitmap, NasaDownloader.IMAGE_TYPE.JPEG);
-```
-
-**Kotlin**:
-```kotlin
-downloader.downloadImage(this, bitmap, NasaDownloader.IMAGE_TYPE.JPEG)
-```
-
-### Extracting Bitmap from ImageView
-
-**Java**:
-```java
-Drawable drawable = imageView.getDrawable();
-Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-```
-
-**Kotlin**:
-```kotlin
-val bitmap = (imageView.drawable as? BitmapDrawable)?.bitmap
-```
-
-### Step 6: Customize Messages
-
-Customize toast messages displayed upon success or failure:
-
-#### Java Example:
-```java
-downloader.setSuccessMsg("Download successful!");
-downloader.setFailureMsg("Download failed!");
-```
-
-#### Kotlin Example:
-```kotlin
-downloader.setSuccessMsg("Download successful!")
-downloader.setFailureMsg("Download failed!")
-```
-
----
-
-## Example Code (Full Workflow)
-
-#### Java:
-```java
-NasaDownloader downloader = new NasaDownloader("YourDirectory", 80);
-downloader.setSuccessMsg("Image downloaded!");
-downloader.setFailureMsg("Download failed!");
-if (!downloader.isPermissionGranted(this)) {
-    downloader.requestPermission(this);
-} else {
-    downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG);
-}
-```
-
-#### Kotlin:
-```kotlin
-val downloader = NasaDownloader("YourDirectory", 80)
-downloader.setSuccessMsg("Image downloaded!")
-downloader.setFailureMsg("Download failed!")
-if (!downloader.isPermissionGranted(this)) {
-    downloader.requestPermission(this)
-} else {
-    downloader.downloadImage(this, "https://image.com/sample.png", NasaDownloader.IMAGE_TYPE.JPEG)
-}
-```
-
----
-
-## Contributing
-
-If **Nasa Downloader** has been useful to you, please give it a ⭐ and share it with your peers. Contributions are always welcome! Fork the repository, make your changes, and submit a pull request.
-
----
 
 ## License
 
-Licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for more information.
+This project is licensed under the [Apache 2.0 License](LICENSE).
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request [here](https://github.com/CodeWithTamim/NasaDownloader).
+
+## Contact
+
+For any inquiries, please contact tamimh.dev@gmail.com.
 
 ---
 
-Thanks for using **Nasa Downloader Library**! For any questions, feel free to [open an issue](https://github.com/CodeWithTamim/NasaDownloader/issues) or [email me](mailto:tamimh.dev@gmail.com).
+Made with ❤️ by Tamim Hossain

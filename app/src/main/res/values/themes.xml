@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ImageLib" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NasaDownloader" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.ImageLib" parent="Base.Theme.ImageLib" />
+    <style name="Theme.NasaDownloader" parent="Base.Theme.NasaDownloader" />
 </resources>

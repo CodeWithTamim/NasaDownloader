@@ -20,5 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Nasa Downloader"
-include ':app'
-include ':library'
+include(":app")
+include(":library")
