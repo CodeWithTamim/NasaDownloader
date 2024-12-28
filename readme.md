@@ -26,7 +26,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.0'
+    implementation 'com.github.CodeWithTamim:NasaDownloader:1.0.6'
 }
 ```
 
@@ -41,7 +41,7 @@ allprojects {
 }
 
 dependencies {
-    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.0")
+    implementation("com.github.CodeWithTamim:NasaDownloader:1.0.6")
 }
 ```
 
@@ -61,6 +61,8 @@ val nasaDownloader = NasaDownloader.getInstance(
 ### Download Image from URL
 
 To download an image from a URL and save it:
+
+### Note : After downloading the image it saves to the specified directory, don't think that you need to save it manually as the callback returns a file.
 ## Java
 ```java
 
