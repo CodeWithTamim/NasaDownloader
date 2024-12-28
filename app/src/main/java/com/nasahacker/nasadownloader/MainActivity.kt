@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val downloader = NasaDownloader.getInstance()
+        /*val downloader = NasaDownloader.getInstance()
 
         val button = findViewById<Button>(R.id.download)
         button.setOnClickListener {
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                         })
                 }
             }
-        }
+        }*/
 
 
     }
